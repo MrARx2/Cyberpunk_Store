@@ -1,0 +1,44 @@
+@font-face {
+  font-family: 'blender-pro-book';
+  src: url('../../assets/cyberpunk-fonts/blender-pro-book/@font-face/blender-pro-book.woff') format('woff'),
+  url('../../assets/cyberpunk-fonts/blender-pro-book/@font-face/blender-pro-book.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+html,body {
+  margin: 0;
+  padding: 0;
+  background-color: black;
+  /* overflow-y: hidden; */
+}
+
+:root {
+  --primary-theme-color: #21e6c1;
+  --primary-button-color: #fcee0a !important;
+  --secondary-button-color: lightslategray;
+  --danger-button-color: #ff1616;
+} 
+
+
+/* width */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey; 
+  border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #fcf00a6c; 
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #fff829b6; 
+}
