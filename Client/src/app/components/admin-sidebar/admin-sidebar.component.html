@@ -1,0 +1,171 @@
+<div class="admin-sidebar">
+    <div *ngIf="currentEditableProduct === undefined && isShowProductAdditionSection === false; else selectedProduct" class="no-product-selected">
+        <p class="sharp main-admin-sidebar-header">Choose a product in order to edit it!</p>
+        <mat-icon class="no-product-selected-icon" aria-hidden="false" aria-label="my cart icon">touch_app</mat-icon>
+    </div>
+
+    <ng-template #selectedProduct>
+        <div *ngIf="!isShowProductAdditionSection; else productAdditionSection">
+            <h2 class="sharp blue-color">Edit - {{currentEditableProduct.name}}</h2>
+    
+            <div class="selected-product">
+                <!-- product name -->
+                <div class="edited-product-section">
+                    <p class="pre-text">Name</p>
+                    <p class="product-info blue-color"><i>{{currentEditableProduct.name}}</i></p>
+                    <div class="border-div"></div>
+                    <button (click)="editProductName()" class="secondary-button custom-admin-sidebar-button">
+                        <mat-icon class="edit-icon" aria-hidden="false" aria-label="my cart icon">create</mat-icon>
+                    </button>
+                </div>
+    
+                <!-- product category -->
+                <div class="edited-product-section">
+                    <p class="pre-text">Category</p>
+                    <p class="product-info blue-color"><i>{{currentEditableProduct.category}}</i></p>
+                    <div class="border-div"></div>
+                    <button (click)="editProductCategory()" class="secondary-button custom-admin-sidebar-button">
+                        <mat-icon class="edit-icon" aria-hidden="false" aria-label="my cart icon">create</mat-icon>
+                    </button>
+                </div>
+
+                <!-- product ability -->
+                <div class="edited-product-section">
+                    <p class="pre-text">Ability</p>
+                    <p class="product-info blue-color"><i>{{currentEditableProduct.ability}}</i></p>
+                    <div class="border-div"></div>
+                    <button (click)="editProductAbility()" class="secondary-button custom-admin-sidebar-button">
+                        <mat-icon class="edit-icon" aria-hidden="false" aria-label="my cart icon">create</mat-icon>
+                    </button>
+                </div>
+    
+                <!-- product description -->
+                <div class="edited-product-section product-description-section">
+                    <p class="pre-text">Description</p>
+                    <p class="product-info product-description-info blue-color"><i>{{currentEditableProduct.description}}</i></p>
+                    <div class="border-div"></div>
+                    <button (click)="editProductDescription()" class="secondary-button custom-admin-sidebar-button">
+                        <mat-icon class="edit-icon" aria-hidden="false" aria-label="my cart icon">create</mat-icon>
+                    </button>
+                </div>
+    
+                <!-- product damage -->
+                <div class="edited-product-section">
+                    <p class="pre-text">Damage</p>
+                    <p class="product-info blue-color"><i>{{currentEditableProduct.damage}}</i></p>
+                    <div class="border-div"></div>
+                    <button (click)="editProductDamage()" class="custom-admin-sidebar-button secondary-button">
+                        <mat-icon class="edit-icon" aria-hidden="false" aria-label="my cart icon">create</mat-icon>
+                    </button>
+                </div>
+
+                <!-- product price -->
+                <div class="edited-product-section">
+                    <p class="pre-text">Price</p>
+                    <p class="product-info blue-color"><i>{{currentEditableProduct.price}} $</i></p>
+                    <div class="border-div"></div>
+                    <button (click)="editProductPrice()" class="custom-admin-sidebar-button secondary-button">
+                        <mat-icon class="edit-icon" aria-hidden="false" aria-label="my cart icon">create</mat-icon>
+                    </button>
+                </div>
+    
+                <!-- product image -->
+                <div class="edited-product-section">
+                    <p class="pre-text">Image</p>
+                    <img class="edited-product-image product-info" src={{currentEditableProduct.imageURL}} alt={{currentEditableProduct.name}}>
+                    <div class="border-div"></div>
+                </div>
+                <input type="file" #fileUploader id="fileUploader" accept="image" name="image_" class="upload-image-button blue-color" (change)="updateProductImage($event)" required />
+            </div>
+        </div>
+        
+        <!-- 'add product' section -->
+        <ng-template #productAdditionSection>
+            <h2 class="sharp main-admin-sidebar-header">Add a product to the store</h2>
+
+            <form #newProductForm="ngForm" [formGroup]="newProductValues">
+                <div class="new-product-info-fields">
+                    <!-- new product name input -->
+                    <mat-form-field>
+                        <mat-label>Name</mat-label>
+                        <input [formControl]="newNameInput" name="newNameInput" matInput type="text" class="yellow-input" required>
+    
+                        <mat-error *ngIf="newNameInput.errors?.required">
+                            The name is <strong>required</strong>
+                        </mat-error>
+                    </mat-form-field>
+    
+                    <!-- new product category input -->
+                    <mat-form-field>
+                        <mat-label>Category</mat-label>
+                        <mat-select disableRipple [formControl]="newCategoryInput" class="yellow-input" required>
+                            <mat-option value="Pistols">Pistols</mat-option>
+                            <mat-option value="Submachine Guns">Submachine Guns</mat-option>
+                            <mat-option value="Assault Rifles">Assault Rifles</mat-option>
+                            <mat-option value="Shotguns">Shotguns</mat-option>
+                            <mat-option value="Sniper Rifles">Sniper Rifles</mat-option>
+                        </mat-select>
+    
+                        <mat-error *ngIf="newCategoryInput.errors?.required">
+                            Category is <strong>required</strong>
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <mat-label>Ability</mat-label>
+                        <mat-select disableRipple [formControl]="newAbilityInput" class="yellow-input" required>
+                            <mat-option value="Power">Power</mat-option>
+                            <mat-option value="Smart">Smart</mat-option>
+                            <mat-option value="Tech">Tech</mat-option>
+                            <mat-option value="Blade">Blade</mat-option>
+                            <mat-option value="Blunt">Blunt</mat-option>
+                        </mat-select>
+    
+                        <mat-error *ngIf="newCategoryInput.errors?.required">
+                            Category is <strong>required</strong>
+                        </mat-error>
+                    </mat-form-field>
+    
+                    <!-- new product description input -->
+                    <mat-form-field>
+                        <mat-label>Description</mat-label>
+                        <input matInput #message maxlength="200" [formControl]="newDescriptionInput" name="newDescriptionInput" class="yellow-input" matInput type="text" required>
+                        <mat-hint align="end">{{message.value.length}} / 200</mat-hint>
+    
+                        <mat-error *ngIf="newDescriptionInput.errors?.required">
+                            Description is <strong>required</strong>
+                        </mat-error>
+                    </mat-form-field>
+    
+                    <!-- new product damage input -->
+                    <mat-form-field>
+                        <mat-label>Damage</mat-label>
+                        <input [formControl]="newDamageInput" name="newDamageInput" matInput type="number" class="yellow-input" required>
+    
+                        <mat-error *ngIf="newDamageInput.errors?.required">
+                            Damage is <strong>required</strong>
+                        </mat-error>
+                    </mat-form-field>
+
+                    <!-- new product price input -->
+                    <mat-form-field>
+                        <mat-label>Price</mat-label>
+                        <input [formControl]="newPriceInput" name="newPriceInput" matInput type="number" class="yellow-input" required>
+    
+                        <mat-error *ngIf="newPriceInput.errors?.required">
+                            Price is <strong>required</strong>
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-label class="yellow-label">Image:</mat-label>
+                    <input type="file" accept="image/*" #fileUpload id="fileUpload" [formControl]="newImageInput" name="image" class="upload-image-button blue-color" (change)="selectImage($event)" required />
+                </div>
+            </form>
+
+            <!-- add new product button -->
+            <button mat-stroked-button class="primary-button full-width" [disabled]="newProductForm.form.invalid" (click)="onAddNewProductClick()">Done</button>
+
+        </ng-template>
+
+    </ng-template>
+</div>

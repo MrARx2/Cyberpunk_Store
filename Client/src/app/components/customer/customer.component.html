@@ -1,0 +1,64 @@
+<div class="customer-page">
+    <mat-drawer-container class="drawer-container" autosize>
+        <mat-drawer #drawer opened="true" class="drawer-sidenav" mode="side" position="end">
+            <app-my-cart></app-my-cart>
+        </mat-drawer>
+        
+        <!-- content of the page -->
+        <div class="page-content">
+            <button type="button" matBadge={{customerCurrentCartItems.length}} matBadgePosition="after" matBadgeColor="accent"
+                mat-stroked-button class="primary-button" (click)="drawer.toggle()">
+                    <mat-icon aria-hidden="false" aria-label="my cart icon">shopping_cart</mat-icon>
+            </button>
+
+            <div *ngIf="currentProductsForDisplay === undefined || currentProductsForDisplay.length === 0; else allProducts" class="no-products-section">
+                <h2 class="yellow-color-with-border">No result found... wierd...</h2>
+            </div>
+
+            <ng-template #allProducts>
+                <div class="products-section">
+                    <div class="categories-navbar" *ngIf="!isShowReceipt">
+                        <div class="navbar-category">
+                            <a id="all-products-nav-text" class="navbarLink current-category" (click)="sortByAllProducts()">All</a>
+                        </div>
+                        <div class="navbar-category">
+                            <a id="pistols-nav-text" class="navbarLink" (click)="sortByPistols()">Pistols</a>
+                        </div>
+                        <div class="navbar-category">
+                            <a id="submachine-guns-nav-text" class="navbarLink" (click)="sortBySubmachineGuns()">Submachine Guns</a>
+                        </div>
+                        <div class="navbar-category">
+                            <a id="assault-rifles-text" class="navbarLink" (click)="sortByAssaultRifles()">Assault Rifles</a>
+                        </div>
+                        <div class="navbar-category">
+                            <a id="shotguns-nav-text" class="navbarLink" (click)="sortByShotguns()">Shotguns</a>
+                        </div>
+                        <div class="navbar-category">
+                            <a id="sniper-rifles-nav-text" class="navbarLink" (click)="sortBySnipers()">Sniper Rifles</a>
+                        </div>
+                        <div class="navbar-category">
+                            <mat-form-field appearance="none">
+                                <mat-label class="search-box-label"></mat-label>
+                                <input matInput type="text" class="search-box" [(ngModel)]="searchInputValue">
+                                <button mat-button *ngIf="searchInputValue" matSuffix mat-icon-button aria-label="Clear" (click)="searchInputValue=''">
+                                  <mat-icon>close</mat-icon>
+                                </button>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    
+                    <!-- all products section -->
+                    <div *ngIf="!isShowReceipt; else showReceipt" class="all-products-section">
+                        <div *ngFor="let product of currentProductsForDisplay|products: searchInputValue.trim()">
+                            <app-product [product]="product" [isEditableByAdmin]="false"></app-product>
+                        </div>
+                    </div>
+    
+                    <ng-template #showReceipt>
+                        <app-receipt></app-receipt>
+                    </ng-template>
+                </div>
+            </ng-template>
+        </div>
+    </mat-drawer-container>
+</div>

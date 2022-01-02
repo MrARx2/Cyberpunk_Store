@@ -1,0 +1,35 @@
+<div class="admin-section">
+    <mat-drawer-container class="drawer-container" autosize>
+        <mat-drawer #drawer class="admin-sidebar" mode="side">
+            <admin-sidebar></admin-sidebar>
+        </mat-drawer>
+
+        <div class="page-content">
+            <button type="button" mat-stroked-button class="primary-button" (click)="drawer.toggle()">
+                <mat-icon aria-hidden="false" aria-label="my cart icon">create</mat-icon>
+            </button>
+
+            <div *ngIf="allProducts === undefined || allProducts.length === 0; else allProductsSection" class="no-products-section">
+                <h2 class="yellow-color">No result found... wierd</h2>
+            </div>
+
+            <ng-template #allProductsSection>
+                <div class="products-section">
+                    <h2 class="sharp admin-section-header">These are the products you can edit, or, you can add a new one</h2>
+    
+                    <!-- all products section -->
+                    <div class="all-products-section">
+                        <div class="add-items-section">
+                            <div class="add-items-button" (click)="onAddNewProductClick()" ></div>
+                        </div>
+    
+                        <div *ngFor="let product of allProducts">
+                            <app-product [product]="product" [isEditableByAdmin]="true"></app-product>
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+
+        </div>
+    </mat-drawer-container>
+</div>

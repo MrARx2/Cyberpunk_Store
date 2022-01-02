@@ -1,0 +1,138 @@
+.selected-product {
+    margin-top: 2rem;
+}
+
+.edited-product-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    min-width: 300px;
+}
+
+.pre-text {
+    margin-right: 1rem;
+    color: black;
+}
+
+.border-div {
+    flex: 1;
+    min-width: 10px;
+    border-top: 1px solid rgb(0, 225, 255);
+    margin: 0 10px;
+}
+
+.edit-product-button {
+    min-width: 10px;
+}
+
+.edited-product-image {
+    width: 120px;
+}
+
+.admin-sidebar {
+    background-color: #fcee0a;
+}
+
+.custom-admin-sidebar-button {
+    background-color: #fcee0a;
+    padding: 5px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: 0.3s ease;
+    outline: none;
+    border: none;
+}
+
+.custom-border {
+    border: 1px solid var(--primary-theme-color);
+}
+
+.custom-admin-sidebar-button:hover {
+    background-color: var(--primary-theme-color);
+    color: white;
+}
+
+.mat-icon {
+    height: 20px;
+    width: 20px;
+}
+
+.edit-icon {
+    font-size: 18px;
+}
+
+.no-product-selected {
+    text-align: center;
+}
+
+.no-product-selected-icon {
+    height: 100px;
+    width: 100px;
+    font-size: 100px;
+    color: var(--primary-theme-color);
+}
+
+.product-description-section {
+    min-width: 100%;
+    max-width: 300px;
+}
+
+.product-description-info {
+    font-size: 0.8rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.new-product-info-fields {
+    display: flex;
+    flex-direction: column;
+}
+
+.main-admin-sidebar-header {
+    color: lightslategray;
+    border: 1px solid lightblue;
+    padding: 0.5rem 1rem;
+}
+
+.upload-image-bu tton {
+    margin: 1rem 0;
+}
+
+.yellow-input {
+    background-color: #fcee0a;
+    color: black;
+    border-radius: 2px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.yellow-label {
+    width: 50px;
+    display: inline-block;
+    background-color: #fcee0a;
+    border-radius: 2px;
+    color: black;
+}
+
+.blue-color {
+    color: rgb(57, 60, 221);
+}
+
+/* 
+.panel-class {
+    position: absolute !important;
+    width: 175px !important;
+    height: fit-content !important;
+    z-index: 9999 !important;
+    top: 0 !important;
+    background-color: black !important;
+    color: yellow !important;
+} */
+  
+@media screen and (max-width: 800px) {
+    .mat-drawer {
+        width: 200px;
+    }
+}
