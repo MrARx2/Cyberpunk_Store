@@ -15,6 +15,6 @@ DATABASE - SQL
 
 Made by Ariel Cohen.
 
-![](Cyberpunk_store.gif)
+![] (Cyberpunk_store.gif)
 
 
